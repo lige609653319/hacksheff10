@@ -14,7 +14,7 @@ ENV/
 .Python
 *.egg-info/
 dist/
-build/
+frontend/build/
 
 # Flask
 instance/
