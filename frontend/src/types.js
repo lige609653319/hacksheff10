@@ -3,6 +3,7 @@
 export const TabView = {
   EXPENSES: 'EXPENSES',
   SETTLEMENTS: 'SETTLEMENTS',
+  TRAVEL_PLANS: 'TRAVEL_PLANS',
 };
 
 

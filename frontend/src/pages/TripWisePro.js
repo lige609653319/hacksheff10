@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { TabView } from '../types';
 import { SettlementCheque } from '../components/SettlementCheque';
 import { JsonImport } from '../components/JsonImport';
+import TravelPlans from '../components/TravelPlans';
 
 // Initial Data (Empty)
 const INITIAL_PARTICIPANTS = [];
@@ -290,6 +291,7 @@ const TripWisePro = () => {
              {[
                { id: TabView.EXPENSES, label: 'Expenses' },
                { id: TabView.SETTLEMENTS, label: 'Settlements' },
+               { id: TabView.TRAVEL_PLANS, label: 'Travel Plans' },
              ].map(tab => (
                <button
                 key={tab.id}
@@ -470,6 +472,11 @@ const TripWisePro = () => {
                )}
              </div>
           </div>
+        )}
+
+        {/* === TAB: TRAVEL PLANS === */}
+        {activeTab === TabView.TRAVEL_PLANS && (
+          <TravelPlans />
         )}
       </main>
     </div>
