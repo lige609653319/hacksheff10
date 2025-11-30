@@ -16,9 +16,10 @@ import queue
 # 加载环境变量
 load_dotenv()
 
-app = Flask(__name__)
+# 配置静态文件夹路径（前端构建文件在 docs 目录）
+app = Flask(__name__, static_folder='docs', static_url_path='')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-here')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bills.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///bills.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # 用于存储用户旅行规划状态（内存存储，实际应用中应使用数据库或Redis）
@@ -2811,4 +2812,8 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
+    # 从环境变量获取端口，如果没有则使用默认值 5000
+    port = int(os.getenv('PORT', 5000))
+    # 在生产环境中，debug 应该为 False
+    debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(host='0.0.0.0', port=port, debug=debug, threaded=True)
