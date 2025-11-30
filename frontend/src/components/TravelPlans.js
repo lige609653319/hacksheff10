@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { API_URL } from '../config';
 
 const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
@@ -16,7 +17,7 @@ const TravelPlans = () => {
   const fetchTravelPlans = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://127.0.0.1:5000/api/travel-plans');
+      const response = await fetch(`${API_URL}/api/travel-plans`);
       const data = await response.json();
       if (data.success) {
         setPlans(data.plans || []);

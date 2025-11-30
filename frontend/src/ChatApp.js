@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './App.css';
-
-const API_URL = 'http://127.0.0.1:5000';
+import { API_URL } from './config';
 
 function ChatApp() {
   const [messages, setMessages] = useState([]);
@@ -243,7 +242,7 @@ function ChatApp() {
             // Update error message instead of removing
             let errorMessage = `Error sending message: ${error.message}`;
             if (error.message === 'Failed to fetch') {
-              errorMessage += '\n\nPossible causes:\n- Server is not running\n- CORS configuration issue\n- Network connection problem\n\nPlease check:\n1. Is the Flask server running on http://127.0.0.1:5000?\n2. Check browser console for more details';
+              errorMessage += `\n\nPossible causes:\n- Server is not running\n- CORS configuration issue\n- Network connection problem\n\nPlease check:\n1. Is the Flask server running on ${API_URL}?\n2. Check browser console for more details`;
             }
             newMessages[lastIndex] = {
               ...newMessages[lastIndex],
